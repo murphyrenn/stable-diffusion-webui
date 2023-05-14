@@ -459,8 +459,8 @@ def create_ui():
 
     modules.scripts.scripts_current = modules.scripts.scripts_txt2img
     modules.scripts.scripts_txt2img.initialize_scripts(is_img2img=False)
-
-    with gr.Blocks(analytics_enabled=False) as txt2img_interface:
+    
+    with gr.Blocks(analytics_enabled=False, visible = False) as txt2img_interface:
         txt2img_prompt, txt2img_prompt_styles, txt2img_negative_prompt, submit, _, _, txt2img_prompt_style_apply, txt2img_save_style, txt2img_paste, extra_networks_button, token_counter, token_button, negative_token_counter, negative_token_button, restore_progress_button = create_toprow(is_img2img=False)
 
         dummy_component = gr.Label(visible=False)
@@ -1660,9 +1660,10 @@ def create_ui():
 
         parameters_copypaste.connect_paste_params_buttons()
 
+
         with gr.Tabs(elem_id="tabs") as tabs:
             for interface, label, ifid in interfaces:
-                if label in shared.opts.hidden_tabs:
+                if label in shared.hidden_tabs:
                     continue
                 with gr.TabItem(label, id=ifid, elem_id=f"tab_{ifid}"):
                     interface.render()

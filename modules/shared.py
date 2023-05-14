@@ -88,6 +88,7 @@ config_filename = cmd_opts.ui_settings_file
 os.makedirs(cmd_opts.hypernetwork_dir, exist_ok=True)
 hypernetworks = {}
 loaded_hypernetworks = []
+hidden_tabs = ['PNG Info', 'Checkpoint Merger', 'Train', 'Settings','Extensions']
 
 
 def reload_hypernetworks():
