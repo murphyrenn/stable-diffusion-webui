@@ -1663,7 +1663,7 @@ def create_ui():
 
         with gr.Tabs(elem_id="tabs") as tabs:
             for interface, label, ifid in interfaces:
-                if label in shared.hidden_tabs:
+                if label in shared.opts.hidden_tabs:
                     continue
                 with gr.TabItem(label, id=ifid, elem_id=f"tab_{ifid}"):
                     interface.render()
