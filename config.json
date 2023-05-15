@@ -135,8 +135,7 @@
         "PNG Info",
         "Checkpoint Merger",
         "Train",
-        "Settings",
-        "Extensions"
+        "Settings"
     ],
     "ui_reorder": "inpaint, sampler, checkboxes, hires_fix, dimensions, cfg, seed, batch, override_settings, scripts",
     "ui_extra_networks_tab_reorder": "",
