@@ -285,7 +285,7 @@ def api_only():
 
 def webui():
     launch_api = cmd_opts.api
-    initialize()
+    # initialize()
 
     while 1:
         if shared.opts.clean_temp_dir_at_start:
