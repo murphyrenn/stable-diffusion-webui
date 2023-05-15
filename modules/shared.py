@@ -629,8 +629,8 @@ class Shared(sys.modules[__name__].__class__):
     def sd_model(self):
         import modules.sd_models
 
-        # return modules.sd_models.model_data.get_sd_model()
-        return False
+        return modules.sd_models.model_data.get_sd_model()
+        # return False
 
     @sd_model.setter
     def sd_model(self, value):

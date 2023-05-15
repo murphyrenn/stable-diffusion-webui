@@ -131,7 +131,13 @@
     "quicksettings_list": [
         "sd_model_checkpoint"
     ],
-    "hidden_tabs": ["PNG Info", "Checkpoint Merger", "Train", "Settings","Extensions"],
+    "hidden_tabs": [
+        "PNG Info",
+        "Checkpoint Merger",
+        "Train",
+        "Settings",
+        "Extensions"
+    ],
     "ui_reorder": "inpaint, sampler, checkboxes, hires_fix, dimensions, cfg, seed, batch, override_settings, scripts",
     "ui_extra_networks_tab_reorder": "",
     "localization": "None",
