@@ -13,6 +13,8 @@ samplers = []
 samplers_for_img2img = []
 samplers_map = {}
 
+people_samplers = ["white", "black", "yellow"]
+
 
 def create_sampler(name, model):
     if name is not None:

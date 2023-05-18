@@ -619,5 +619,13 @@
     "train/Drop out tags when creating prompts./step": 0.1,
     "train/Choose latent sampling method/visible": true,
     "train/Choose latent sampling method/value": "once",
-    "webui/Tabs@tabs/selected": null
+    "webui/Tabs@tabs/selected": null,
+    "txt2img/??Sampling method/visible": true,
+    "txt2img/??Sampling method/value": "Euler a",
+    "img2img/??Sampling method/visible": true,
+    "img2img/??Sampling method/value": "Euler a",
+    "txt2img/\u4eba\u79cd/visible": true,
+    "txt2img/\u4eba\u79cd/value": "Euler a",
+    "img2img/\u4eba\u79cd/visible": true,
+    "img2img/\u4eba\u79cd/value": "Euler a"
 }

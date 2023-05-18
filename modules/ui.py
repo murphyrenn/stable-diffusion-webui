@@ -36,7 +36,7 @@ import modules.textual_inversion.ui
 from modules import prompt_parser
 from modules.images import save_image
 from modules.sd_hijack import model_hijack
-from modules.sd_samplers import samplers, samplers_for_img2img
+from modules.sd_samplers import samplers, samplers_for_img2img, people_samplers
 from modules.textual_inversion import textual_inversion
 import modules.hypernetworks.ui
 from modules.generation_parameters_copypaste import image_from_url_text
@@ -288,8 +288,7 @@ def create_toprow(is_img2img):
             with gr.Row():
                 with gr.Column(scale=80):
                     with gr.Row():
-                        prompt = gr.Textbox(label="Prompt", elem_id=f"{id_part}_prompt", show_label=False, lines=3, placeholder="Prompt (press Ctrl+Enter or Alt+Enter to generate)")
-
+                        prompt = gr.Textbox(label="Prompt", elem_id=f"{id_part}_prompt", value = "asian woman")
             with gr.Row():
                 with gr.Column(scale=80):
                     with gr.Row():
@@ -410,14 +409,16 @@ def create_output_panel(tabname, outdir):
 def create_sampler_and_steps_selection(choices, tabname):
     if opts.samplers_in_dropdown:
         with FormRow(elem_id=f"sampler_selection_{tabname}"):
-            sampler_index = gr.Dropdown(label='Sampling method', elem_id=f"{tabname}_sampling", choices=[x.name for x in choices], value=choices[0].name, type="index")
+            sampler_index_ = gr.Dropdown(label='人种', elem_id=f"{tabname}_sampling_new", choices=["黑种人", "黄种人","白种人"], value="人种选择", type="index")
             steps = gr.Slider(minimum=1, maximum=150, step=1, elem_id=f"{tabname}_steps", label="Sampling steps", value=20)
+            sampler_index = gr.Dropdown(label='Sampling method', elem_id=f"{tabname}_sampling", choices=[x.name for x in choices], value=choices[0].name, type="index")
+
     else:
         with FormGroup(elem_id=f"sampler_selection_{tabname}"):
             steps = gr.Slider(minimum=1, maximum=150, step=1, elem_id=f"{tabname}_steps", label="Sampling steps", value=20)
             sampler_index = gr.Radio(label='Sampling method', elem_id=f"{tabname}_sampling", choices=[x.name for x in choices], value=choices[0].name, type="index")
 
-    return steps, sampler_index
+    return steps, sampler_index, sampler_index_
 
 
 def ordered_ui_categories():
@@ -474,7 +475,7 @@ def create_ui():
             with gr.Column(variant='compact', elem_id="txt2img_settings"):
                 for category in ordered_ui_categories():
                     if category == "sampler":
-                        steps, sampler_index = create_sampler_and_steps_selection(samplers, "txt2img")
+                        steps, sampler_index_, sampler_index = create_sampler_and_steps_selection(samplers, "txt2img")
 
                     elif category == "dimensions":
                         with FormRow():
@@ -550,6 +551,7 @@ def create_ui():
             connect_reuse_seed(seed, reuse_seed, generation_info, dummy_component, is_subseed=False)
             connect_reuse_seed(subseed, reuse_subseed, generation_info, dummy_component, is_subseed=True)
 
+            # txt2img_prompt_ = "dog"
             txt2img_args = dict(
                 fn=wrap_gradio_gpu_call(modules.txt2img.txt2img, extra_outputs=[None, '', '']),
                 _js="submit",
@@ -775,7 +777,7 @@ def create_ui():
 
                 for category in ordered_ui_categories():
                     if category == "sampler":
-                        steps, sampler_index = create_sampler_and_steps_selection(samplers_for_img2img, "img2img")
+                        steps, sampler_index_, sampler_index = create_sampler_and_steps_selection(samplers_for_img2img, "img2img")
 
                     elif category == "dimensions":
                         with FormRow():
